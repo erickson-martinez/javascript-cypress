@@ -1,12 +1,17 @@
 {
-  "name": "javascript-cypress",
+  "name": "Cypress Básico",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "open": "cypress open",
+    "test": "cypress run"
   },
-  "keywords": [],
+  "keywords": [
+    "Testing",
+    "Cypress.io",
+    "Cypress Básico"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
