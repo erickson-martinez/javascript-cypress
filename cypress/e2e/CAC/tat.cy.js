@@ -24,7 +24,6 @@ describe("Visit CAT TAT page", () => {
     cy.get("#firstName").click().clear().type("Erickson");
     cy.get("#lastName").click().clear().type("Martinez");
     cy.get("#email").click().clear().type("testeteste.com");
-    cy.get("#phone").type("5599999999");
     cy.get("#open-text-area")
       .click()
       .clear()
@@ -62,6 +61,18 @@ describe("Visit CAT TAT page", () => {
       .should("have.value", "Typing in field")
       .clear()
       .should("have.value", "");
-    cy.get('button[type="submit"]').should("have.text", "Enviar").click();
+
+    it("validate require phone", () => {
+      cy.get("#firstName").click().clear().type("Erickson");
+      cy.get("#lastName").click().clear().type("Martinez");
+      cy.get("#email").click().clear().type("teste@teste.com");
+      cy.get("#open-text-area")
+        .click()
+        .clear()
+        .type("Typing in filds", { delay: 0 });
+      cy.get("#phone-checkbox").click();
+
+      cy.get('button[type="submit"]').should("have.text", "Enviar").click();
+    });
   });
 });
