@@ -107,4 +107,9 @@ describe("Visit CAT TAT page", () => {
     cy.get('button[type="submit"]').should("have.text", "Enviar").click();
     cy.get(".error").should("be.visible");
   });
+
+  it("Send form for commands", () => {
+    cy.fillMandatoryFieldsAndSubmit();
+    cy.get(".success").should("be.visible");
+  });
 });
