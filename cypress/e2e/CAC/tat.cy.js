@@ -32,4 +32,8 @@ describe("Visit CAT TAT page", () => {
     cy.get('button[type="submit"]').should("have.text", "Enviar").click();
     cy.get(".error").should("be.visible");
   });
+
+  it("message error phone invalid", () => {
+    cy.get("#phone").type("abcdefgh").should("have.value", "");
+  });
 });
