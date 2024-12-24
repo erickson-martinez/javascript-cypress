@@ -75,4 +75,31 @@ describe("Visit CAT TAT page", () => {
       cy.get('button[type="submit"]').should("have.text", "Enviar").click();
     });
   });
+
+  it("Clean fields in form", () => {
+    cy.get("#firstName")
+      .click()
+      .type("Erickson")
+      .should("have.value", "Erickson")
+      .clear()
+      .should("have.value", "");
+    cy.get("#lastName")
+      .click()
+      .type("Martinez")
+      .should("have.value", "Martinez")
+      .clear()
+      .should("have.value", "");
+    cy.get("#email")
+      .click()
+      .type("teste@teste.com")
+      .should("have.value", "teste@teste.com")
+      .clear()
+      .should("have.value", "");
+    cy.get("#open-text-area")
+      .click()
+      .type("Typing in field", { delay: 0 })
+      .should("have.value", "Typing in field")
+      .clear()
+      .should("have.value", "");
+  });
 });
