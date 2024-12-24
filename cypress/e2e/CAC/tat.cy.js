@@ -102,4 +102,9 @@ describe("Visit CAT TAT page", () => {
       .clear()
       .should("have.value", "");
   });
+
+  it("Send form empty", () => {
+    cy.get('button[type="submit"]').should("have.text", "Enviar").click();
+    cy.get(".error").should("be.visible");
+  });
 });
