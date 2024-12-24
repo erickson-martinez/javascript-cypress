@@ -17,6 +17,19 @@ describe("Visit CAT TAT page", () => {
       .click()
       .clear()
       .type("Typing in filds", { delay: 0 });
-    cy.get('button[type="submit"]').should("Enviar").click();
+    cy.get('button[type="submit"]').should("have.text", "Enviar").click();
+  });
+
+  it("message error, email invalid", () => {
+    cy.get("#firstName").click().clear().type("Erickson");
+    cy.get("#lastName").click().clear().type("Martinez");
+    cy.get("#email").click().clear().type("testeteste.com");
+    cy.get("#phone").type("5599999999");
+    cy.get("#open-text-area")
+      .click()
+      .clear()
+      .type("Typing in filds", { delay: 0 });
+    cy.get('button[type="submit"]').should("have.text", "Enviar").click();
+    cy.get(".error").should("be.visible");
   });
 });
