@@ -135,4 +135,12 @@ describe("Visit CAT TAT page", () => {
       .check()
       .should("have.value", "feedback");
   });
+
+  it.only("Check input radio", () => {
+    cy.get('input[type="radio"]')
+      .should("have.length", 3)
+      .each(($radio) => {
+        cy.wrap($radio).check().should("be.checked");
+      });
+  });
 });
