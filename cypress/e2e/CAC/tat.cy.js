@@ -150,4 +150,32 @@ describe("Visit CAT TAT page", () => {
     });
     cy.get('input[type="checkbox"]').last().uncheck().should("not.be.checked");
   });
+
+  it("Upload file paste fixture", () => {
+    cy.get("#file-upload")
+      .should("not.have.value")
+      .selectFile("cypress/fixtures/example.json")
+      .should(($input) => {
+        expect($input[0].files[0].name).to.equal("example.json");
+      });
+  });
+
+  it("Select file with drag and drop", () => {
+    cy.get("#file-upload")
+      .should("not.have.value")
+      .selectFile("cypress/fixtures/example.json", { action: "drag-drop" })
+      .should(($input) => {
+        expect($input[0].files[0].name).to.equal("example.json");
+      });
+  });
+  it("Fixture for upload file", () => {
+    cy.fixture("example.json").as("sampleFile");
+
+    cy.get("#file-upload")
+      .should("not.have.value")
+      .selectFile("@sampleFile")
+      .should(($input) => {
+        expect($input[0].files[0].name).to.equal("example.json");
+      });
+  });
 });
