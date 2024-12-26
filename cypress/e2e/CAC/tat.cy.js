@@ -113,8 +113,20 @@ describe("Visit CAT TAT page", () => {
     cy.get(".success").should("be.visible");
   });
 
-  it.only(`Validate link with contains`, () => {
+  it(`Validate link with contains`, () => {
     cy.contains("button", "Enviar").click();
     cy.get(".error").should("be.visible");
+  });
+
+  it("Select one product", () => {
+    cy.get("select").select("YouTube").should("have.value", "youtube");
+  });
+
+  it("Select one product for value", () => {
+    cy.get("select").select("mentoria").should("have.value", "mentoria");
+  });
+
+  it("Select one product for index", () => {
+    cy.get("select").select(1).should("have.value", "blog");
   });
 });
