@@ -129,4 +129,10 @@ describe("Visit CAT TAT page", () => {
   it("Select one product for index", () => {
     cy.get("select").select(1).should("have.value", "blog");
   });
+
+  it.only("Check feedback input radio", () => {
+    cy.get('input[type="radio"][value="feedback"]')
+      .check()
+      .should("have.value", "feedback");
+  });
 });
