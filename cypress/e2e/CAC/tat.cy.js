@@ -130,17 +130,24 @@ describe("Visit CAT TAT page", () => {
     cy.get("select").select(1).should("have.value", "blog");
   });
 
-  it.only("Check feedback input radio", () => {
+  it("Check feedback input radio", () => {
     cy.get('input[type="radio"][value="feedback"]')
       .check()
       .should("have.value", "feedback");
   });
 
-  it.only("Check input radio", () => {
+  it("Check input radio", () => {
     cy.get('input[type="radio"]')
       .should("have.length", 3)
       .each(($radio) => {
         cy.wrap($radio).check().should("be.checked");
       });
+  });
+
+  it("Checkbox and uncheck", () => {
+    cy.get('input[type="checkbox"]').each(($checkbox) => {
+      cy.wrap($checkbox).check().should("be.checked");
+    });
+    cy.get('input[type="checkbox"]').last().uncheck().should("not.be.checked");
   });
 });
