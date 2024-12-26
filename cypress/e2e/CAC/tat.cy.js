@@ -70,7 +70,7 @@ describe("Visit CAT TAT page", () => {
         .click()
         .clear()
         .type("Typing in filds", { delay: 0 });
-      cy.get("#phone-checkbox").click();
+      cy.get("#phone-checkbox").check().should("be.checked");
 
       cy.get('button[type="submit"]').should("have.text", "Enviar").click();
     });
