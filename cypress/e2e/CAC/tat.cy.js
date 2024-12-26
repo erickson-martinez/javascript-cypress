@@ -150,4 +150,13 @@ describe("Visit CAT TAT page", () => {
     });
     cy.get('input[type="checkbox"]').last().uncheck().should("not.be.checked");
   });
+
+  it("Upload fila paste fixture", () => {
+    cy.get("#file-upload")
+      .should("not.have.value")
+      .selectFile("cypress/fixtures/example.json")
+      .should(($input) => {
+        expect($input[0].files[0].name).to.equal("example.json");
+      });
+  });
 });
