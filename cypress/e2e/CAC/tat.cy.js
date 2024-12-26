@@ -112,4 +112,9 @@ describe("Visit CAT TAT page", () => {
     cy.fillMandatoryFieldsAndSubmit();
     cy.get(".success").should("be.visible");
   });
+
+  it.only(`Validate link with contains`, () => {
+    cy.contains("button", "Enviar").click();
+    cy.get(".error").should("be.visible");
+  });
 });
