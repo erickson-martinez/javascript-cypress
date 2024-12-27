@@ -178,4 +178,13 @@ describe("Visit CAT TAT page", () => {
         expect($input[0].files[0].name).to.equal("example.json");
       });
   });
+
+  it("New tab validate target", () => {
+    cy.get("#privacy a")
+      .should("have.attr", "target", "_blank")
+      .invoke("removeAttr", "target")
+      .click();
+
+    cy.url().should("include", "/src/privacy.html");
+  });
 });
