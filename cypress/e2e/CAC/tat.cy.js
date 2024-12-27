@@ -180,6 +180,11 @@ describe("Visit CAT TAT page", () => {
   });
 
   it("New tab validate target", () => {
-    cy.get("#privacy a").should("have.attr", "target", "_blank");
+    cy.get("#privacy a")
+      .should("have.attr", "target", "_blank")
+      .invoke("removeAttr", "target")
+      .click();
+
+    cy.url().should("include", "/src/privacy.html");
   });
 });
