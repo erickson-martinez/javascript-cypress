@@ -223,4 +223,15 @@ describe("Visit CAT TAT page", () => {
       .invoke("val", textLong)
       .should("have.value", textLong);
   });
+
+  it("request end point", () => {
+    cy.request("https://cac-tat.s3.eu-central-1.amazonaws.com/index.html").then(
+      (resp) => {
+        const { status, statusText, body } = resp;
+        expect(status).to.equal(200);
+        expect(statusText).to.equal("OK");
+        expect(body).to.include("CAC TAT");
+      }
+    );
+  });
 });
