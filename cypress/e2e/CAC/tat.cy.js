@@ -10,6 +10,7 @@ describe("Visit CAT TAT page", () => {
   });
 
   it("Typing in fields and send form", () => {
+    cy.clock();
     cy.get("#firstName").click().clear().type("Erickson");
     cy.get("#lastName").click().clear().type("Martinez");
     cy.get("#email").click().clear().type("teste@teste.com");
@@ -18,9 +19,15 @@ describe("Visit CAT TAT page", () => {
       .clear()
       .type("Typing in filds", { delay: 0 });
     cy.get('button[type="submit"]').should("have.text", "Enviar").click();
+
+    cy.get(`.success`).should(`be.visible`);
+
+    cy.tick(3000);
+    cy.get(`.success`).should(`not.be.visible`);
   });
 
   it("message error, email invalid", () => {
+    cy.clock();
     cy.get("#firstName").click().clear().type("Erickson");
     cy.get("#lastName").click().clear().type("Martinez");
     cy.get("#email").click().clear().type("testeteste.com");
@@ -30,6 +37,8 @@ describe("Visit CAT TAT page", () => {
       .type("Typing in field", { delay: 0 });
     cy.get('button[type="submit"]').should("have.text", "Enviar").click();
     cy.get(".error").should("be.visible");
+    cy.tick(3000);
+    cy.get(".error").should("not.be.visible");
   });
 
   it("message error phone invalid", () => {
