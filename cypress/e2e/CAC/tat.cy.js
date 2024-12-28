@@ -117,9 +117,12 @@ describe("Visit CAT TAT page", () => {
     cy.get(".error").should("be.visible");
   });
 
-  it("Send form for commands", () => {
-    cy.fillMandatoryFieldsAndSubmit();
-    cy.get(".success").should("be.visible");
+  const num = Cypress._.random(0, 5);
+  Cypress._.times(num, () => {
+    it("Send form for commands", () => {
+      cy.fillMandatoryFieldsAndSubmit();
+      cy.get(".success").should("be.visible");
+    });
   });
 
   it(`Validate link with contains`, () => {
