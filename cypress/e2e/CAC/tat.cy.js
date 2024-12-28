@@ -200,7 +200,7 @@ describe("Visit CAT TAT page", () => {
     cy.url().should("include", "/src/privacy.html");
   });
 
-  it.only("visible and not visible use invoke", () => {
+  it("visible and not visible use invoke", () => {
     cy.get(".success")
       .should("not.be.visible")
       .invoke("show")
@@ -215,5 +215,12 @@ describe("Visit CAT TAT page", () => {
       .and("contain", "Valide os campos obrigatórios!")
       .invoke("hide")
       .should("not.be.visible");
+  });
+
+  it("Typing textearea use invoke", () => {
+    const textLong = Cypress._.repeat("Erickson ", 10);
+    cy.get("#open-text-area")
+      .invoke("val", textLong)
+      .should("have.value", textLong);
   });
 });
