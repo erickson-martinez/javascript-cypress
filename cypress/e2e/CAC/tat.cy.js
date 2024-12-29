@@ -234,4 +234,10 @@ describe("Visit CAT TAT page", () => {
       }
     );
   });
+
+  it("find the hidden cat", () => {
+    cy.get("#cat").should("not.be.visible").invoke("show").should("be.visible");
+    cy.get("#title").invoke("text", "Erickson de Souza Martinez");
+    cy.get("#subtitle").invoke("text", "Analista de Qualidade de Software III");
+  });
 });
